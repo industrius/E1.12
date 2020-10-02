@@ -1,16 +1,5 @@
 import random
  
-secret_word = random.choice([
-    "skillfactory", 
-    "testing", 
-    "blackbox", 
-    "pytest", 
-    "unittest", 
-    "coverage"
-    ]).upper()
-hidden_word = "_" * len(secret_word)
-wrong = 0
-max_wrong = 4
 
 def update_hidden_word(char, secret_word, hidden_word):
     """
@@ -35,26 +24,48 @@ def check_input(char, secret_word):
         return False
 
 
-while wrong < max_wrong and hidden_word != secret_word:
-    print("\nКоличество ошибок: ", wrong)
-    print("\nСлово: ", hidden_word)
-    char = input("\n\nВведите букву: ").upper()
-   
-    while char in hidden_word:
-        print("Такая буква уже была")
-        char = input("Введите букву: ").upper()
-
-    if check_input(char, secret_word):
-        hidden_word = update_hidden_word(char, secret_word, hidden_word)
-        print("\nУгадал")
-    else:
-        wrong += 1
-        print("\nОшибка")
+def generate_word():
+    """
+    Функция выбора игрового слова
+    """
+    return random.choice([
+        "skillfactory", 
+        "testing", 
+        "blackbox", 
+        "pytest", 
+        "unittest", 
+        "coverage"
+        ]).upper()
 
 
-if wrong == max_wrong:
-    print("\nПроиграл")
-else:
-    print("\nПобедил")
+def main():
+    secret_word = generate_word()
+    hidden_word = "_" * len(secret_word)
+    wrong = 0
+    max_wrong = 4
+    while wrong < max_wrong and hidden_word != secret_word:
+        print("\nКоличество ошибок: ", wrong)
+        print("\nСлово: ", hidden_word)
+        char = input("\n\nВведите букву: ").upper()
     
-print("\nА слово было: ", secret_word)
+        while char in hidden_word:
+            print("Такая буква уже была")
+            char = input("Введите букву: ").upper()
+
+        if check_input(char, secret_word):
+            hidden_word = update_hidden_word(char, secret_word, hidden_word)
+            print("\nУгадал")
+        else:
+            wrong += 1
+            print("\nОшибка")
+
+
+    if wrong == max_wrong:
+        print("\nПроиграл")
+    else:
+        print("\nПобедил")
+        
+    print("\nА слово было: ", secret_word)
+
+if __name__ == "__main__":
+    main()
