@@ -1,3 +1,5 @@
+Непрерывная интеграция с travis-ci
+
 [![Travis][build-badge]][build]
 
 [build-badge]: https://img.shields.io/travis/industrius/E1.12/master.png?style=flat-square
