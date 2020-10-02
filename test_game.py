@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from game import check_input, update_hidden_word, generate_word
 import pytest
 
